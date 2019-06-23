@@ -1,0 +1,67 @@
+<div class="main">
+    <h1 class="containerTitle">Request Tour</h1>
+    <a href="/">
+        <img id="welcomeLogo" src="/images/tu_tiger.svg">
+    </a>
+
+
+    <% include ./partials/messages %>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Group Classification</option>
+                        <option value="1">Prospective Student and Family</option>
+                        <option value="2">Alumni</option>
+                        <option value="3">Transfer Student</option>
+                        <option value="4">Community Group</option>
+                        <option value="5">Organization</option>
+                        <option value="6">School Group</option>
+                    </select>
+                    <label>Group Classification</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Tour Type</option>
+                        <option value="1">Historical Campus Tour</option>
+                        <option value="2">National Historic Site Tour (National Park Service)</option>
+                        <option value="3">Prospective Student Tour</option>
+                        <option value="4">Self-Guided Tour</option>
+                    </select>
+                    <label>Tour Type</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="groupNumber" type="number" class="validate">
+                    <label for="groupNumber">Number in Group/Family</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="validate">
+                    <label for="phone">Phone</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
