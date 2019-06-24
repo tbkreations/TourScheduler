@@ -2,10 +2,17 @@ const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const mongoose = require("mongoose")
 const nodemailer = require("nodemailer")
+const fs = require('fs');
 const app = express()
 
 //DB Config
-const db = require('./config/keys').MongoURI;
+let db;
+if (fs.existsSync(__dirname + '/config')) {
+    db = require('./config/keys').MongoURI;
+}
+else {
+    db = process.env.MongoURI;
+}
 
 //Connect to Mongo
 mongoose.connect(db, {useNewUrlParser: true})

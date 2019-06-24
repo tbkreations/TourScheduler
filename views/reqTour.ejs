@@ -1,4 +1,4 @@
-<div class="main">
+<div id="tourReqMain" class="main">
     <h1 class="containerTitle">Request Tour</h1>
     <a href="/">
         <img id="welcomeLogo" src="/images/tu_tiger.svg">
@@ -41,6 +41,18 @@
                 </div>
             </div>
             <div class="row">
+                <div class="input-field col s12">
+                    <input id="date" type="text" class="datepicker validate">
+                    <label for="date">Date</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="time" type="text" class="timepicker validate">
+                    <label for="time">Time</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s6">
                     <input id="last_name" type="text" class="validate">
                     <label for="first_name">First Name</label>
@@ -62,6 +74,9 @@
                     <label for="phone">Phone</label>
                 </div>
             </div>
+            <a class="buttonContainer" href="tours/reqTour">
+        <button class="navBtn" id="reqtourBtn">Sumbit Request</button>
+    </a>
         </form>
     </div>
 </div>

@@ -21,6 +21,10 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+#tourReqMain {
+    margin-top: 20%;
+}
+
 #welcomeLogo {
     height: 100px;
     width: 100px;
@@ -48,30 +52,112 @@ body {
     text-decoration: none;
 }
 
+/* Date Modal Styles */
+.datepicker-modal {
+    width: max-content;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Time Modal Styles */
+.timepicker-modal {
+    width: max-content;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timepicker-canvas line {
+    stroke: rgb(134, 24, 24);
+}
+
+.timepicker-canvas-bg,
+.timepicker-canvas-bearing {
+    fill: rgb(134, 24, 24);
+}
+
+.datepicker-date-display {
+    background-color: rgb(134, 24, 24) ;
+}
+
+.timepicker-digital-display {
+    background-color: rgb(134, 24, 24);
+}
+
+.waves-effect {
+    color: rgb(239, 164, 39);
+}
+
+.datepicker-day-button {
+    color: rgb(239, 164, 39);
+}
+
+.datepicker-table td.is-selected {
+    color: rgb(239, 164, 39);
+    background-color: rgb(134, 24, 24);
+}
+
+.datepicker-controls {
+    color: rgb(134, 24, 24);
+}
+
+svg:not(:root) {
+    color: rgb(239, 164, 39);
+}
+
 /* input styles: text, email, and number */
 .input-field label {
-    color: rgb(239, 164, 39) !important;
+    color: rgb(239, 164, 39);
 }
 
 .input-field input:focus+label {
-    color: rgb(134, 24, 24) !important;
+    color: rgb(134, 24, 24);
 }
 
 .input-field input:focus {
-    border-bottom: 1px solid rgb(134, 24, 24) !important;
-    box-shadow: 0 1px 0 0 rgb(134, 24, 24) !important;
+    border-bottom: 1px solid rgb(134, 24, 24);
+    box-shadow: 0 1px 0 0 rgb(134, 24, 24);
+}
+
+/* Select Styles */
+.dropdown-content li>a,
+.dropdown-content li>span {
+    color: rgb(239, 164, 39);
 }
 
 /* valid input styles */
 .input-field input.valid {
-    border-bottom: 1px solid rgb(239, 164, 39) !important;
-    box-shadow: 0 1px 0 0 rgb(239, 164, 39) !important;
+    border-bottom: 1px solid rgb(239, 164, 39);
+    box-shadow: 0 1px 0 0 rgb(239, 164, 39);
+}
+
+#date input.valid {
+    border-bottom: 1px solid rgb(239, 164, 39);
+    box-shadow: 0 1px 0 0 rgb(239, 164, 39);
+}
+
+#time input.valid {
+    border-bottom: 1px solid rgb(239, 164, 39);
+    box-shadow: 0 1px 0 0 rgb(239, 164, 39);
 }
 
 /* invalid input styles */
 .input-field input.invalid {
-    border-bottom: 1px solid #dfdfdf !important;
-    box-shadow: 0 1px 0 0 #dfdfdf !important;
+    border-bottom: 1px solid #dfdfdf;
+    box-shadow: 0 1px 0 0 #dfdfdf;
+}
+
+#date input.invalid {
+    border-bottom: 1px solid #dfdfdf;
+    box-shadow: 0 1px 0 0 #dfdfdf;
+}
+
+#time input.invalid {
+    border-bottom: 1px solid #dfdfdf;
+    box-shadow: 0 1px 0 0 #dfdfdf;
 }
 
 /* Psuedo Styles */
@@ -82,5 +168,15 @@ body {
 
 .navBtn:focus {
     outline: none;
-    background: rgba(239, 164, 39, 0.8) !important;
+    background: rgba(239, 164, 39, 0.8);
+}
+
+.month-next:focus {
+    outline: none;
+    background: none;
+}
+
+.month-prev:focus {
+    outline: none;
+    background: none;
 }
