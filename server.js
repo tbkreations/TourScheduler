@@ -11,7 +11,7 @@ if (fs.existsSync(__dirname + '/config')) {
     db = require('./config/keys').MongoURI;
 }
 else {
-    db = process.env.MongoURI;
+    db = process.env.DATABASE_URL;
 }
 
 //Connect to Mongo
