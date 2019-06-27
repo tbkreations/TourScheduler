@@ -3,37 +3,38 @@
     <a class="logoContainer" href="/">
         <img id="welcomeLogo" src="/images/tu_tiger.svg">
     </a>
-
-    <form>
+    <% include ./partials/messages %>
+    <form action="/users/register" method="POST">
         <div class="row">
             <div class="input-field col s6">
-                <input id="first_name" type="text" class="validate">
+                <input name="first_name" id="first_name" type="text" class="validate" value="<%= typeof first_name != 'undefined' ? first_name : '' %>">
                 <label for="first_name">First Name</label>
             </div>
             <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate">
+                <input name="last_name" id="last_name" type="text" class="validate" value="<%= typeof last_name != 'undefined' ? last_name : '' %>">
                 <label for="last_name">Last Name</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="email" type="email" class="validate">
+                <input name="email" id="email" type="email" class="validate" value="<%= typeof email != 'undefined' ? email : '' %>">
                 <label for="email">Email</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
+                <input name="password" id="password" type="password" class="validate" value="<%= typeof password != 'undefined' ? password : '' %>">
                 <label for="password">Password</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="confirmPassword" type="password" class="validate">
+                <input name="confirmPassword" id="confirmPassword" type="password" class="validate" value="<%= typeof password != 'undefined' ? password : '' %>">
                 <label for="confirmPassword">Confirm Password</label>
             </div>
         </div>
-        <button type="submit"class="navBtn">Register</button>
+        <button type="submit" id="register" class="navBtn">Register</button>
+        <p class="isUser"><a href="/users/login">Have an Account? Login</a></p>
     </form>
 
 </div>

@@ -3,80 +3,94 @@
     <a class="logoContainer" href="/">
         <img id="welcomeLogo" src="/images/tu_tiger.svg">
     </a>
-
-
     <% include ./partials/messages %>
     <div class="row">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <select>
-                        <option value="" disabled selected>Group Classification</option>
-                        <option value="1">Prospective Student and Family</option>
-                        <option value="2">Alumni</option>
-                        <option value="3">Transfer Student</option>
-                        <option value="4">Community Group</option>
-                        <option value="5">Organization</option>
-                        <option value="6">School Group</option>
-                    </select>
-                    <label>Group Classification</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <select>
-                        <option value="" disabled selected>Tour Type</option>
-                        <option value="1">Historical Campus Tour</option>
-                        <option value="2">National Historic Site Tour (National Park Service)</option>
-                        <option value="3">Prospective Student Tour</option>
-                        <option value="4">Self-Guided Tour</option>
-                    </select>
-                    <label>Tour Type</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="groupNumber" type="number" class="validate">
-                    <label for="groupNumber">Number in Group/Family</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="date" type="text" class="datepicker validate">
-                    <label for="date">Date</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="time" type="text" class="timepicker validate">
-                    <label for="time">Time</label>
-                </div>
-            </div>
+        <form action="/tours/reqTour" method="POST" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate">
-                    <label for="first_name">First Name</label>
+                    <input name="reqFirstName" id="reqFirstName" type="text" class="validate">
+                    <label for="reqFirstName">First Name</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate">
-                    <label for="last_name">Last Name</label>
+                    <input name="reqLastName" id="reqLastName" type="text" class="validate">
+                    <label for="reqLastName">Last Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
+                    <input name="email" id="email" type="email" class="validate">
                     <label for="email">Email</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="validate">
+                    <input placeholder="XXX-XXX-XXXX" name="phone" id="phone" type="tel" pattern="([0-9]){3}-[0-9]{3}-[0-9]{4}" class="validate">
                     <label for="phone">Phone</label>
                 </div>
             </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="groupClass">
+                        <option value="" disabled selected>Select One</option>
+                        <option value="Prospective Student and Family">Prospective Student and Family</option>
+                        <option value="Alumni">Alumni</option>
+                        <option value="Transfer Student">Transfer Student</option>
+                        <option value="Community Group">Community Group</option>
+                        <option value="Organization">Organization</option>
+                        <option value="School Group">School Group</option>
+                    </select>
+                    <label for="groupClass">Group Classification</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="tourType">
+                        <option value="" disabled selected>Select One</option>
+                        <option value="Historical Campus Tour">Historical Campus Tour</option>
+                        <option value="National Historic Site Tour (National Park Service)">National Historic Site Tour (National Park Service)</option>
+                        <option value="Prospective Student Tour">Prospective Student Tour</option>
+                        <option value="Self-Guided Tour">Self-Guided Tour</option>
+                    </select>
+                    <label for="tourType">Tour Type</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input name="groupSize" id="groupSize" type="number" class="validate">
+                    <label for="groupSize">Number in Group/Family</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input name="date" id="date" type="text" class="datepicker validate">
+                    <label for="date">Date</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="time">
+                        <option value="" disabled selected>Select One</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                    </select>
+                    <label for="time">Time</label>
+                </div>
+            </div>
             <a class="buttonContainer" href="tours/reqTour">
-        <button class="navBtn" id="reqtourBtn">Sumbit Request</button>
-    </a>
+                <button class="navBtn" id="reqtourBtn">Sumbit Request</button>
+            </a>
         </form>
     </div>
 </div>
+
+<!-- <div class="row">
+                <div class="input-field col s12">
+                    <input id="time" type="text" class="timepicker validate">
+                    <label for="time">Time</label>
+                </div>
+            </div> -->

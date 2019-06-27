@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 //User Model
 const User = require('../models/user.js');
@@ -13,26 +14,24 @@ router.get('/register', (req, res) => res.render("register"));
 
 //Register Handle
 router.post('/register', (req, res) => {
-    console.log(req.body);
-    res.send("Hello");
-
     const {
-        name,
+        first_name,
+        last_name,
         email,
         password,
-        password2
+        confirmPassword
     } = req.body;
     let errors = []
 
     //Check required fields
-    if (!name || !email || !password || !password2) {
+    if (!first_name || !last_name || !email || !password || !confirmPassword) {
         errors.push({
             msg: "Please Fill In All Fields"
         });
     }
 
     //Check passwords match
-    if (password != password2) {
+    if (password != confirmPassword) {
         errors.push({
             msg: "Passwords do not Match"
         });
@@ -48,10 +47,11 @@ router.post('/register', (req, res) => {
     if (errors.length > 0) {
         res.render('register', {
             errors,
-            name,
+            first_name,
+            last_name,
             email,
             password,
-            password2
+            confirmPassword
         })
     } else {
         User.findOne({ email: email }).then(user => {
@@ -60,14 +60,16 @@ router.post('/register', (req, res) => {
                 errors.push({ msg: "E-Mail is already registered"})
                 res.render('register', {
                     errors,
-                    name,
+                    first_name,
+                    last_name,
                     email,
                     password,
-                    password2
+                    confirmPassword
                 });
             } else {
                 const newUser = new User({
-                    name,
+                    firstname: first_name,
+                    lastname: last_name,
                     email,
                     password
                 });
@@ -80,13 +82,30 @@ router.post('/register', (req, res) => {
                     //Save User
                     newUser.save()
                         .then(user => {
-                            res.redirect('/login');
+                            req.flash('success_msg', 'You are now registered and can log in');
+                            res.redirect('/users/login');
                         })
                         .catch(err => console.log(err));
                 }))
             }
         });
     }
+})
+
+//Login Handle
+router.post("/login", (req, res, next) => {
+    passport.authenticate("local", {
+        successRedirect: '/dashboard',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
+});
+
+//Logout Handle
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'Logout Success');
+    res.redirect('/users/login');
 })
 
 module.exports = router;

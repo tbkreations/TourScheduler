@@ -1,0 +1,15 @@
+<div class="main">
+    <h1 class="containerTitle">Welcome, <%= name %></h1>
+    <img id="welcomeLogo" src="/images/tu_tiger.svg">
+    <a href="/users/logout">
+        <button class="navBtn" id="logout">Logout</button>
+    </a>
+    <% if (verified) { %>
+        <% users.forEach((user) => { %>
+            <li>
+                <h1><%= user.name %></h1>
+            </li>
+        <% }) %>
+    <% } %>
+       
+</div>
