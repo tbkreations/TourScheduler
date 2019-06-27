@@ -56,7 +56,7 @@ router.post('/reqTour', (req, res) => {
         newTourReq.save()
         .then(tour => {
             req.flash('success_msg', 'Your Tour Request Has Been Submitted');
-            res.redirect('/reqTour');
+            res.redirect('/tours/reqTour');
         })
         .catch(err => console.log(err));
     }
