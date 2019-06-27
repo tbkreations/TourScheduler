@@ -23,6 +23,8 @@ else {
     db = process.env.DATABASE_URL;
 }
 
+console.log(db);
+
 //Connect to Mongo
 mongoose.connect(db, {useNewUrlParser: true})
     .then(() => console.log("MongoDB Connected..."));
