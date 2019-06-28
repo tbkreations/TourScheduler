@@ -36,7 +36,7 @@ body {
 }
 
 #register,
-#login, #logout, #reqtourBtn {
+#login, #logout, #reqtourBtn, #sumbitCode {
     width: fit-content;
 }
 

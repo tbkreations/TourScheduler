@@ -7,17 +7,17 @@
     <form action="/users/register" method="POST">
         <div class="row">
             <div class="input-field col s6">
-                <input name="first_name" id="first_name" type="text" class="validate" value="<%= typeof first_name != 'undefined' ? first_name : '' %>">
+                <input name="first_name" id="first_name" type="text" class="validate" value="<%= typeof first_name != 'undefined' ? first_name : '' %>" spellcheck="false">
                 <label for="first_name">First Name</label>
             </div>
             <div class="input-field col s6">
-                <input name="last_name" id="last_name" type="text" class="validate" value="<%= typeof last_name != 'undefined' ? last_name : '' %>">
+                <input name="last_name" id="last_name" type="text" class="validate" value="<%= typeof last_name != 'undefined' ? last_name : '' %>" spellcheck="false">
                 <label for="last_name">Last Name</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input name="email" id="email" type="email" class="validate" value="<%= typeof email != 'undefined' ? email : '' %>">
+                <input name="email" id="email" type="email" class="validate" value="<%= typeof email != 'undefined' ? email : '' %>" spellcheck="false">
                 <label for="email">Email</label>
             </div>
         </div>

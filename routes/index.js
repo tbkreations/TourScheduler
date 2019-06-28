@@ -22,4 +22,9 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
     })
 });
 
+router.get('/verify', ensureAuthenticated, (req, res) => {
+    if (err) throw err
+    res.render("verify")
+});
+
 module.exports = router;
