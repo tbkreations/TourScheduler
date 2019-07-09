@@ -1,0 +1,43 @@
+<div id="tourListMain" class="main">
+    <h1 class="dashboardTitle" id="userWelcome">Welcome, <%= name %> (<%= roles %>)</h1>
+
+    <nav class="userNav">
+        <a href="/dashboard" class="brand-logo"><img class="nav-logo" src="/images/tu_tiger.svg"></a>
+        <ul>
+            <li><a href="/dashboard" class="nav-item">Dashboard Home</a></li>
+            <li class="active"><a href="/tourList" class="nav-item">Manage Tours</a></li>
+            <li><a href="/profile" class="nav-item">User Profile</a></li>
+            <li><a href="/users/logout" class="nav-item">Logout</a></li>
+        </ul>
+    </nav>
+
+    <table id="tourlistTable">
+        <caption>Upcoming Tours</caption>
+        <tr>
+            <!-- <th>Requester</th> -->
+            <th>Tour Date</th>
+            <th>Tour Time</th>
+            <th>Accept Tour</th>
+        </tr>
+        <% tours.forEach((tour) => { %>
+        <tr>
+            <!-- <td><%= tour.reqFirstName + ' ' + tour.reqLastName %></td> -->
+            <%
+            var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var day = dayNames[tour.date.getDay()];
+            var date = tour.date.getDate();
+            var month = monthNames[tour.date.getMonth()];
+            var year = tour.date.getFullYear();
+            %>
+            <td><%= day + ', ' + month + ' ' + date + ', ' + year%></td>
+            <td><%= tour.time %></td>
+            <td>
+                <form action="/tourList/<%= tour._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="navBtn tableButton">Accept Tour</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+</div>

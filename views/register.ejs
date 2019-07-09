@@ -1,7 +1,7 @@
-<div class="main">
+<div id="registerMain" class="main">
     <h1 class="containerTitle">Ambassador Register</h1>
     <a class="logoContainer" href="/">
-        <img id="welcomeLogo" src="/images/tu_tiger.svg">
+        <img id="logoRegister" class="welcomeLogo" src="/images/tu_tiger.svg">
     </a>
     <% include ./partials/messages %>
     <form action="/users/register" method="POST">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <button type="submit" id="register" class="navBtn">Register</button>
-        <p class="isUser"><a href="/users/login">Have an Account? Login</a></p>
+        <p><a id="isUser" href="/users/login">Have an Account? Login</a></p>
     </form>
 
 </div>

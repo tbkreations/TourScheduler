@@ -5,8 +5,12 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const nodemailer = require("nodemailer");
 const passport = require("passport");
+const bcrypt = require('bcryptjs');
 const fs = require('fs');
-const User = require('./models/user.js')
+const methodOverride = require('method-override');
+
+const User = require('./models/user.js');
+const Tour = require('./models/tour.js');
 
 const app = express();
 
@@ -34,17 +38,25 @@ mongoose.connect(db, {
             email: 'trae0714@gmail.com'
         }, function (err) {});
 
-        console.log(process.env.ADMIN_PASS)
         const Admin = new User({
             firstname: 'Trae',
             lastname: 'Brown',
             email: 'trae0714@gmail.com',
-            password: process.env.ADMIN_PASS,
+            password: require('./config/keys').ADMIN_PASS,
             roles: ['Admin'],
             verified: true
         })
-        console.log(Admin.firstname + ' ' + Admin.roles + ' Created')
-        Admin.save();
+
+        bcrypt.genSalt(10, (err, salt) => bcrypt.hash(Admin.password, salt, (err, hash) => {
+            if (err) throw err;
+            //Set password to Hashed
+            Admin.password = hash;
+            //Save User
+            Admin.save()
+                .catch(err => console.log(err));
+        }))
+
+        console.log(Admin.firstname + ' ' + Admin.lastname + ' ' + Admin.roles + ' Created')
     })
     .catch(err => console.log(err));
 
@@ -87,6 +99,67 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/tours', require('./routes/tours.js'));
+
+app.use(methodOverride('_method'));
+
+app.delete("/dashboard/:id", function (req, res) {
+    User.findOneAndDelete(req.params.id, function (err) {
+        if (err) {
+            res.redirect("/dashboard");
+        } else {
+            req.flash('success_msg', 'Delete Success');
+            res.redirect("/dashboard");
+        }
+    });
+});
+
+app.delete("/tourList/:id", async function (req, res) {
+    const acceptedTours = await [Tour.findById(req.params.id)];
+    const result = await Promise.all(acceptedTours)
+    console.log(result);
+
+    User.findByIdAndUpdate(req.user._id, {tours: acceptedTours}, (err) => {
+        if (err) {
+            console.log('User List NOT Updated');
+            req.flash('error_msg', 'Query Error: Could Not Update List')
+        } else {
+            Tour.findOneAndDelete(req.params.id, function (err) {
+                if (err) {
+                    console.log('Delete Error: Master List Not Updated')
+                } else {
+                    console.log('Success: Master List Updated...');
+                    console.log('Lists Updated!');
+                    res.redirect('/profile')
+                }
+            })
+        }
+    })
+        // Tour.findById(req.params.id, function (err) {
+        //     if (err) {
+        //         req.flash('error_msg', 'Tour Accept Error');
+        //         res.redirect('/tourList');
+        //         console.log('Tour Accept Error');
+        //     } else {
+        //         req.flash('success_msg', 'Tour Accepted');
+        //         console.log(req.user.firstname + ': ' + req.user._id);
+        //         console.log('Tour Accept Success');
+
+        //         User.findByIdAndUpdate(req.user._id, {
+        //             tours: acceptedTours
+        //         }, (err) => {
+        //             if (err) {
+        //                 console.log('User List NOT Updated')
+        //             } else {
+        //                 console.log('User Updated')
+        //             }
+        //         })
+
+        //         res.redirect('/profile');
+        //     }
+        // })
+})
+
+
 
 //Nodemailer
 var transporter = nodemailer.createTransport({

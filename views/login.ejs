@@ -1,24 +1,24 @@
-<div class="main">
+<div id="loginMain" class="main">
     <h1 class="containerTitle">Ambassador Login</h1>
     <a class="logoContainer" href="/">
-        <img id="welcomeLogo" src="/images/tu_tiger.svg">
+        <img class="welcomeLogo" id="logoLogin" src="/images/tu_tiger.svg">
     </a>
     <% include ./partials/messages %>
     <form action="/users/login" method="POST">
         <div class="row">
             <div class="input-field col s12">
-                <input name="email" id="email" type="email" class="validate">
+                <input name="email" id="email" type="email" class="validate" spellcheck="false">
                 <label for="email">Email</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input name="password" id="password" type="password" class="validate">
+                <input name="password" id="password" type="password" class="validate" spellcheck="false">
                 <label for="password">Password</label>
             </div>
         </div>
         <button type="submit" id="login" class="navBtn">Login</button>
-        <p class="notUser"><a href="/users/register">Need an Account? Register</a></p>
+        <p><a id="notUser" href="/verify">Need an Account? Register</a></p>
     </form>
 
 </div>

@@ -10,7 +10,16 @@ const User = require('../models/user.js');
 router.get('/login', (req, res) => res.render("login"));
 
 //Register Page
-router.get('/register', (req, res) => res.render("register"));
+router.get('/register', (req, res) => {
+    if (req.query['code'] === "BookerTU1881") {
+        res.render('register');
+        // req.flash('success_msg', 'Valid Code: Registration Access Granted');
+    }
+    else {
+        req.flash('error_msg', 'Invalid Code: Registration Access Denied');
+        res.redirect('/verify');
+    }
+});
 
 //Register Handle
 router.post('/register', (req, res) => {
@@ -106,5 +115,7 @@ router.get('/logout', (req, res) => {
     req.flash('success_msg', 'Logout Success');
     res.redirect('/users/login')
 })
+
+
 
 module.exports = router;

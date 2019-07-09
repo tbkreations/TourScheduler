@@ -1,0 +1,17 @@
+<div class="main">
+    <h1 class="dashboardTitle" id="userWelcome">Welcome, <%= name %> (<%= roles %>)</h1>
+
+    <nav class="userNav">
+        <a href="/dashboard" class="brand-logo"><img class="nav-logo" src="/images/tu_tiger.svg"></a>
+        <ul>
+            <li><a href="/dashboard" class="nav-item">Dashboard Home</a></li>
+            <li><a href="/tourList" class="nav-item">Manage Tours</a></li>
+            <li class="active"><a href="/profile" class="nav-item">User Profile</a></li>
+            <li><a href="/users/logout" class="nav-item">Logout</a></li>
+        </ul>
+    </nav>
+
+    <form action="/profile" method="POST">
+        <button type="submit" class="navBtn tableButton">Create User</button>
+    </form>
+</div>

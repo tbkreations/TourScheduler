@@ -1,7 +1,7 @@
 <div id="tourReqMain" class="main">
     <h1 class="containerTitle">Request Tour</h1>
     <a class="logoContainer" href="/">
-        <img id="welcomeLogo" src="/images/tu_tiger.svg">
+        <img id="logoRequest" class="welcomeLogo" src="/images/tu_tiger.svg">
     </a>
     <% include ./partials/messages %>
     <div class="row">
@@ -24,7 +24,8 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input placeholder="XXX-XXX-XXXX" name="phone" id="phone" type="tel" pattern="([0-9]){3}-[0-9]{3}-[0-9]{4}" class="validate">
+                    <input placeholder="XXX-XXX-XXXX" name="phone" id="phone" type="tel"
+                        pattern="([0-9]){3}-[0-9]{3}-[0-9]{4}" class="validate">
                     <label for="phone">Phone</label>
                 </div>
             </div>
@@ -47,7 +48,8 @@
                     <select name="tourType">
                         <option value="" disabled selected>Select One</option>
                         <option value="Historical Campus Tour">Historical Campus Tour</option>
-                        <option value="National Historic Site Tour (National Park Service)">National Historic Site Tour (National Park Service)</option>
+                        <option value="National Historic Site Tour (National Park Service)">National Historic Site Tour
+                            (National Park Service)</option>
                         <option value="Prospective Student Tour">Prospective Student Tour</option>
                         <option value="Self-Guided Tour">Self-Guided Tour</option>
                     </select>
@@ -81,9 +83,7 @@
                     <label for="time">Time</label>
                 </div>
             </div>
-            <a class="buttonContainer" href="tours/reqTour">
-                <button class="navBtn" id="reqtourBtn">Sumbit Request</button>
-            </a>
+            <button type="submit" class="navBtn" id="reqTour">Sumbit Request</button>
         </form>
     </div>
 </div>

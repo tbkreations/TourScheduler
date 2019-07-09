@@ -1,3 +1,11 @@
+// const removeUser = document.querySelector('.removeUser');
+
+// console.log(removeUser);
+
+// removeUser.addEventListener('click', function() {
+//   console.log("Removed");
+// })
+
 document.addEventListener('DOMContentLoaded', function () {
   var select = document.querySelectorAll('select');
   var instances = M.FormSelect.init(select);
@@ -28,3 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  var mnav = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(mnav);
+});

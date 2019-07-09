@@ -37,7 +37,9 @@ const TourSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+});
 
+// , {timestamps: true}
+// TourSchema.index({createdAt: 1})
 const Tour = mongoose.model('Tour', TourSchema);
 module.exports = Tour;

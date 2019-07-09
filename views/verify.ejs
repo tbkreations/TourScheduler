@@ -1,17 +1,17 @@
-<div class="main">
+<div id="verifyMain" class="main">
     <h1 class="containerTitle">Enter Registration Code</h1>
     <a class="logoContainer" href="/">
-        <img id="welcomeLogo" src="/images/tu_tiger.svg">
+        <img class="welcomeLogo" id="logoVerify" src="/images/tu_tiger.svg">
     </a>
     <% include ./partials/messages %>
-    <form action="/users/login" method="POST">
+    <form action="/users/register" method="GET">
         <div class="row">
             <div class="input-field col s12">
                 <input name="code" id="code" type="password" class="validate">
                 <label for="code">Code</label>
             </div>
         </div>
-        <button type="submit" id="sumbitCode" class="navBtn">Sumbit Code</button>
+        <button type="submit" id="submitCode" class="navBtn">Sumbit Code</button>
     </form>
 
 </div>
