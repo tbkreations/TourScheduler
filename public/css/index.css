@@ -17,14 +17,6 @@ caption {
     margin: 0 auto;
 }
 
-#register,
-#login,
-#logout,
-#reqtourBtn,
-#sumbitCode {
-    width: fit-content;
-}
-
 #logout {
     position: absolute;
     top: 0;
@@ -38,6 +30,11 @@ caption {
 
 #unverifiedIcon {
     color: gray;
+}
+
+.form {
+    width: 50%;
+    margin: auto;
 }
 
 .switch label input[type=checkbox]:checked+.lever,
@@ -108,6 +105,10 @@ caption {
     text-decoration: none;
     width: fit-content;
     margin: 0 auto;
+    position: fixed;
+    bottom: 0;
+    left: -50%;
+    right: -50%;
 }
 
 /* Date Modal Styles */
@@ -247,8 +248,8 @@ td.is-empty {
     display: flex;
     flex-direction: column;
     width: 50vw;
+    height: 75vh;
     top: 50%;
-    padding: 2%;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -271,22 +272,29 @@ td.is-empty {
     margin-bottom: 2rem;
 }
 
-#tourReqMain {
-    margin-top: 15rem;
-    margin-bottom: 5rem;
+#registerMain {
+    overflow: auto;
 }
 
-#registerMain {
-    margin-top: 5%;
-    margin-bottom: 5%;
+#tourReqMain {
+    overflow: auto;
 }
 
 /* Logo Styles */
 .welcomeLogo {
     height: auto;
+    width: 10rem;
+}
+
+#logoHome {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#logoRegister, #logoRequest {
     width: 6rem;
-    margin: 0 auto;
-    margin-bottom: 5%;
 }
 
 #logoDashboard {
@@ -300,6 +308,8 @@ td.is-empty {
 #reqTour {
     font-size: 3vmin;
     width: fit-content;
+    margin: auto;
+    margin-bottom: .25rem;
     height: auto;
 }
 
@@ -311,6 +321,9 @@ a#isUser {
 
 /* Phone Styles (Small Devices) */
 @media only screen and (max-width: 600px) {
+    .form {
+        width: 90%;
+    }
     .main {
         width: 90vw;
         height: 90vh;
@@ -328,11 +341,6 @@ a#isUser {
     .buttonContainer {
         width: fit-content;
         height: max-content;
-        margin: auto;
-        position: relative;
-        /* bottom: 2rem; */
-        right: 0;
-        left: 0;
     }
 
     .welcomeLogo {
@@ -346,18 +354,6 @@ a#isUser {
 
     .select-wrapper {
         margin-top: 1rem;
-    }
-
-    #registerMain {
-        height: auto;
-        margin-top: 8rem;
-        margin-bottom: 5rem;
-    }
-
-    #tourReqMain {
-        height: auto;
-        margin-top: 22rem;
-        margin-bottom: 5rem;
     }
 
     a#notUser,
@@ -374,9 +370,10 @@ a#isUser {
         width: 5vw;
     }
 
-    /* #login, #submitCode, #register, #reqTour {
-        font-size: 6vmin;
-    } */
+    #login, #submitCode, #register, #reqTour {
+        font-size: 5vmin;
+        margin-bottom: .25rem;
+    }
     #logoLogin,
     #logoRegister,
     #logoVerify,

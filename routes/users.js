@@ -13,7 +13,7 @@ router.get('/login', (req, res) => res.render("login"));
 router.get('/register', (req, res) => {
     if (req.query['code'] === "BookerTU1881") {
         res.render('register');
-        // req.flash('success_msg', 'Valid Code: Registration Access Granted');
+        req.flash('success_msg', 'Valid Code: Registration Access Granted');
     }
     else {
         req.flash('error_msg', 'Invalid Code: Registration Access Denied');

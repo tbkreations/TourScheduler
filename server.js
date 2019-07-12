@@ -8,6 +8,7 @@ const passport = require("passport");
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const methodOverride = require('method-override');
+const Cleave = require('cleave.js')
 
 const User = require('./models/user.js');
 const Tour = require('./models/tour.js');
@@ -102,6 +103,8 @@ app.use('/tours', require('./routes/tours.js'));
 
 app.use(methodOverride('_method'));
 
+
+//Data Man.
 app.delete("/dashboard/:id", function (req, res) {
     User.findOneAndDelete(req.params.id, function (err) {
         if (err) {
@@ -118,7 +121,9 @@ app.delete("/tourList/:id", async function (req, res) {
     const result = await Promise.all(acceptedTours)
     console.log(result);
 
-    User.findByIdAndUpdate(req.user._id, {tours: acceptedTours}, (err) => {
+    User.findByIdAndUpdate(req.user._id, {
+        tours: acceptedTours
+    }, (err) => {
         if (err) {
             console.log('User List NOT Updated');
             req.flash('error_msg', 'Query Error: Could Not Update List')
@@ -134,29 +139,29 @@ app.delete("/tourList/:id", async function (req, res) {
             })
         }
     })
-        // Tour.findById(req.params.id, function (err) {
-        //     if (err) {
-        //         req.flash('error_msg', 'Tour Accept Error');
-        //         res.redirect('/tourList');
-        //         console.log('Tour Accept Error');
-        //     } else {
-        //         req.flash('success_msg', 'Tour Accepted');
-        //         console.log(req.user.firstname + ': ' + req.user._id);
-        //         console.log('Tour Accept Success');
+    // Tour.findById(req.params.id, function (err) {
+    //     if (err) {
+    //         req.flash('error_msg', 'Tour Accept Error');
+    //         res.redirect('/tourList');
+    //         console.log('Tour Accept Error');
+    //     } else {
+    //         req.flash('success_msg', 'Tour Accepted');
+    //         console.log(req.user.firstname + ': ' + req.user._id);
+    //         console.log('Tour Accept Success');
 
-        //         User.findByIdAndUpdate(req.user._id, {
-        //             tours: acceptedTours
-        //         }, (err) => {
-        //             if (err) {
-        //                 console.log('User List NOT Updated')
-        //             } else {
-        //                 console.log('User Updated')
-        //             }
-        //         })
+    //         User.findByIdAndUpdate(req.user._id, {
+    //             tours: acceptedTours
+    //         }, (err) => {
+    //             if (err) {
+    //                 console.log('User List NOT Updated')
+    //             } else {
+    //                 console.log('User Updated')
+    //             }
+    //         })
 
-        //         res.redirect('/profile');
-        //     }
-        // })
+    //         res.redirect('/profile');
+    //     }
+    // })
 })
 
 

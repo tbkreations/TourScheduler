@@ -1,11 +1,3 @@
-// const removeUser = document.querySelector('.removeUser');
-
-// console.log(removeUser);
-
-// removeUser.addEventListener('click', function() {
-//   console.log("Removed");
-// })
-
 document.addEventListener('DOMContentLoaded', function () {
   var select = document.querySelectorAll('select');
   var instances = M.FormSelect.init(select);
@@ -36,7 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   var mnav = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(mnav);
 });
+
+// let phone = document.getElementById('phone');
+// document.addEventListener('keyup', phone, formatPhone);
+
+// function formatPhone(e) {
+//   phone = phone.innerText
+//   phone = phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
+//   console.log(phone);
+// }
