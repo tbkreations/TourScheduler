@@ -1,5 +1,11 @@
 <div id="dashboardMain" class="main">
-    <h1 class="dashboardTitle" id="userWelcome">Welcome, <%= name %> (<%= roles %>)</h1>
+    <h1 class="dashboardTitle" id="userWelcome">Welcome, <%= name %>
+        <% if (roles.includes('Admin')) { %>
+        (Admin)
+        <% } else { %>
+        <%= roles %>)
+        <% } %>
+    </h1>
 
     <nav class="userNav">
         <a href="/dashboard" class="brand-logo"><img class="nav-logo" src="/images/tu_tiger.svg"></a>
@@ -11,64 +17,37 @@
         </ul>
     </nav>
 
-    <!-- <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-          <a href="/dashboard">Dashboard Home</a>
-          <a href="/tourList">Manage Tours</a>
-          <a href="/profile">User Profile</a>
-          <a href="/users/logout">Logout</a>
-        </div>
-      </div> -->
-
     <!-- Admin Panel Table -->
-    <% if (roles == 'Admin') { %>
-    <table id="adminTable">
-        <caption>Admin Panel</caption>
-        <tr>
-            <th>Name</th>
-            <th>Verified</th>
-            <th>E-Mail</th>
-            <th>Remove</th>
-            <th>Promote</th>
-        </tr>
+    <p class="dashboardHeading">Manage Users</p>
+    <div class="flexPanel" id="userPanel">
+        <% if (roles.includes('Admin')) { %>
         <% users.forEach((user) => { %>
-        <tr>
-            <td class="admintableData"><%= user.firstname + ' ' + user.lastname %></td>
-            <td class="admintableData">
-                <div class="switch">
-                    <label>
-                        <i id="unverifiedIcon" class="fas fa-check-circle"></i>
-                        <% if (user.verified == true) { %>
-                        <input data-id="<%=user._id%>" type="checkbox" checked>
-                        <% } %>
-                        <% if (user.verified == false) { %>
-                        <input data-id="<%=user._id%>" type="checkbox">
-                        <% } %>
-
-                        <span class="lever"></span>
-                        <i id="verifiedIcon" class="fas fa-check-circle"></i>
-                    </label>
-                </div>
-            </td>
-            <td class="admintableData"><%= user.email %></td>
-            <td class="admintableData">
-                <% if (user.roles == 'Ambassador') { %>
-                <form action="/dashboard/<%= user._id %>?_method=DELETE" method="POST">
-                    <button type="submit" class="navBtn tableButton">Remove User</button>
-                </form>
+        <% if (user.firstname != 'Trae') { %>
+        <div class="userCard userCardHover" data-id="<%= user._id %>">
+            <p class="cardContent" id="cardName"><%= user.firstname + ' ' + user.lastname.substring(0, 1) %>.</p>
+            <p class="cardContent" id="cardRole">
+                <% if (user.roles.includes('Admin')) { %>
+                Admin
+                <% } else { %>
+                <%= user.roles %>
                 <% } %>
-            </td>
-            <td>
-                <% if (user.roles == 'Ambassador') { %>
-                <form action="/dashboard/<%= user._id %>" method="POST">
-                    <button type="submit" class="navBtn tableButton">Promote User</button>
-                </form>
-                <% } %>
-            </td>
-        </tr>
+            </p>
+            <ul>
+                <li id="cardEmail"><%= user.email %></li>
+                <li id="cardPromote">
+                    <form action="/dashboard/promote/<%= user._id %>" method="POST">
+                        <button type="submit" class="navBtn actionButton" id="promoteBtn">Promote User</button>
+                    </form>
+                </li>
+                <li id="cardRemove">
+                    <form action="/dashboard/<%= user._id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="navBtn actionButton" id="removeBtn">Remove User</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <% } %>
         <% }) %>
-    </table>
-    <% } %>
-
+        <% } %>
+    </div>
 </div>

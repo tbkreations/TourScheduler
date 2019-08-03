@@ -84,4 +84,16 @@ router.get('/verify', (req, res) => {
     res.render('verify');
 });
 
+router.post('/dashboard/promote/:id', ensureAuthenticated, (req, res) => {
+    User.findOneAndUpdate({_id: req.params.id}, {$push: {roles: 'Admin'}}, (err, success) => {
+        if (err) {
+            res.redirect('/dashboard');
+            console.log(err);
+        } else {
+            res.redirect('/dashboard');
+            console.log('User Promoted: ' + req.params.id);
+        }
+    });
+})
+
 module.exports = router;

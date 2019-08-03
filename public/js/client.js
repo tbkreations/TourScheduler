@@ -33,6 +33,26 @@ document.addEventListener('DOMContentLoaded', function () {
   var instances = M.Sidenav.init(mnav);
 });
 
+
+var userDiv = document.getElementById('userPanel');
+var cards = document.querySelectorAll('.userCard');
+
+Array.from(cards).forEach(card => {
+  card.addEventListener('click', function(e) {
+    card.classList.toggle('selected');
+    card.classList.toggle('userCardHover');
+    setTimeout(function () {
+      userDiv.scrollTop = 0;
+    }, 500)
+    Array.from(cards).forEach(inactive => {
+      if (inactive !== card) {
+        inactive.classList.add('userCardHover');
+        inactive.classList.remove('selected');
+      }
+    })
+  })
+})
+
 // let phone = document.getElementById('phone');
 // document.addEventListener('keyup', phone, formatPhone);
 

@@ -11,33 +11,35 @@
         </ul>
     </nav>
 
-    <table id="tourlistTable">
-        <caption>Upcoming Tours</caption>
-        <tr>
-            <!-- <th>Requester</th> -->
-            <th>Tour Date</th>
-            <th>Tour Time</th>
-            <th>Accept Tour</th>
-        </tr>
-        <% tours.forEach((tour) => { %>
-        <tr>
-            <!-- <td><%= tour.reqFirstName + ' ' + tour.reqLastName %></td> -->
-            <%
-            var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            var day = dayNames[tour.date.getDay()];
-            var date = tour.date.getDate();
-            var month = monthNames[tour.date.getMonth()];
-            var year = tour.date.getFullYear();
-            %>
-            <td><%= day + ', ' + month + ' ' + date + ', ' + year%></td>
-            <td><%= tour.time %></td>
-            <td>
-                <form action="/tourList/<%= tour._id %>?_method=DELETE" method="POST">
-                    <button type="submit" class="navBtn tableButton">Accept Tour</button>
-                </form>
-            </td>
-        </tr>
-        <% }) %>
+    <div class="flexPanel" id="tourPanel">
+        <table id="tourlistTable">
+            <caption>Upcoming Tours</caption>
+            <tr>
+                <!-- <th>Requester</th> -->
+                <th>Tour Date</th>
+                <th>Tour Time</th>
+                <th>Accept Tour</th>
+            </tr>
+            <% tours.forEach((tour) => { %>
+            <tr>
+                <!-- <td><%= tour.reqFirstName + ' ' + tour.reqLastName %></td> -->
+                <%
+                var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+                var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                var day = dayNames[tour.date.getDay()];
+                var date = tour.date.getDate();
+                var month = monthNames[tour.date.getMonth()];
+                var year = tour.date.getFullYear();
+                %>
+                <td><%= day + ', ' + month + ' ' + date + ', ' + year%></td>
+                <td><%= tour.time %></td>
+                <td>
+                    <form action="/tourList/<%= tour._id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="navBtn actionButton">Accept Tour</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+    </div>
 </div>

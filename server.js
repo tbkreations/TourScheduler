@@ -8,7 +8,7 @@ const passport = require("passport");
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const methodOverride = require('method-override');
-const Cleave = require('cleave.js')
+const bodyParser = require('body-parser');
 
 const User = require('./models/user.js');
 const Tour = require('./models/tour.js');
@@ -64,9 +64,6 @@ mongoose.connect(db, {
 //EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
-app.use(express.urlencoded({
-    extended: false
-}));
 app.use(express.static(__dirname + "/public"));
 
 //Body Parser
@@ -105,40 +102,52 @@ app.use(methodOverride('_method'));
 
 
 //Data Man.
+
 app.delete("/dashboard/:id", function (req, res) {
-    User.findOneAndDelete(req.params.id, function (err) {
+    console.log("dashboard delete");
+    User.findByIdAndDelete(req.params.id, function (err) {
         if (err) {
             res.redirect("/dashboard");
+            req.flash('error_msg', 'Delete Failed');
         } else {
             req.flash('success_msg', 'Delete Success');
             res.redirect("/dashboard");
+            console.log('User Deleted: ' + req.params.id);
         }
     });
 });
 
 app.delete("/tourList/:id", async function (req, res) {
+    console.log("tour delete");
+    console.log(req.params.id);
     const acceptedTours = await [Tour.findById(req.params.id)];
     const result = await Promise.all(acceptedTours)
     console.log(result);
 
-    User.findByIdAndUpdate(req.user._id, {
-        tours: acceptedTours
-    }, (err) => {
-        if (err) {
-            console.log('User List NOT Updated');
-            req.flash('error_msg', 'Query Error: Could Not Update List')
-        } else {
-            Tour.findOneAndDelete(req.params.id, function (err) {
-                if (err) {
-                    console.log('Delete Error: Master List Not Updated')
-                } else {
-                    console.log('Success: Master List Updated...');
-                    console.log('Lists Updated!');
-                    res.redirect('/profile')
-                }
-            })
-        }
-    })
+    try {
+        User.findByIdAndUpdate(req.user._id, {
+            tours: acceptedTours
+        }, (err) => {
+            if (err) {
+                console.log('User List NOT Updated');
+                req.flash('error_msg', 'Query Error: Could Not Update List')
+            } else {
+                Tour.findOneAndDelete(req.params.id, function (err) {
+                    if (err) {
+                        console.log('Delete Error: Master List Not Updated')
+                    } else {
+                        console.log('Success: Master List Updated...');
+                        console.log('Lists Updated!');
+                        res.redirect('/profile')
+                    }
+                })
+            }
+        })
+    } catch (e) {
+        console.log(e);
+    }
+    
+    
     // Tour.findById(req.params.id, function (err) {
     //     if (err) {
     //         req.flash('error_msg', 'Tour Accept Error');
