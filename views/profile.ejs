@@ -1,15 +1,17 @@
-<div class="main">
+<div id="profileMain" class="main">
     <h1 class="dashboardTitle" id="userWelcome">Welcome, <%= name %> (<%= roles %>)</h1>
 
     <nav class="userNav">
-        <a href="/dashboard" class="brand-logo"><img class="nav-logo" src="/images/tu_tiger.svg"></a>
-        <ul>
-            <li><a href="/dashboard" class="nav-item">Dashboard Home</a></li>
-            <li><a href="/tourList" class="nav-item">Manage Tours</a></li>
-            <li class="active"><a href="/profile" class="nav-item">User Profile</a></li>
-            <li><a href="/users/logout" class="nav-item">Logout</a></li>
-        </ul>
-    </nav>
+            <ul class="nav-ul">
+                <li id="logo-navitem"><a href="/dashboard" class="brand-logo"><img class="nav-logo" src="/images/tu_tiger.svg"></a></li>
+                <li id="dashboard-navitem"><a href="/dashboard" class="nav-item">Dashboard Home</a></li>
+                <li id="managetours-navitem"><a href="/tourList" class="nav-item">Manage Tours</a></li>
+                <li id="profile-navitem" class="active"><a href="/profile" class="nav-item">User Profile</a></li>
+                <li id="logout-navitem"><a href="/users/logout" class="nav-item">Logout</a></li>
+                <!-- <li id="menu-navitem"><a href="/dashboard#" class="nav-item"><i class="fas fa-bars"></i></a></li> -->
+                <li id="menubutton-navitem"><a href="/dashboard#" class="nav-item"><i class="fas fa-bars"></i></a></li>
+            </ul>
+        </nav>
 
     <form action="/profile" method="POST">
         <button type="submit" class="navBtn actionButton">Create User</button>

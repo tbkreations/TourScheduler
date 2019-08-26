@@ -328,6 +328,11 @@ td.is-empty {
     padding: 2rem;
 }
 
+#profileMain {
+    width: 50vw;
+    padding: 2rem;
+}
+
 #registerMain {
     overflow: auto;
 }
