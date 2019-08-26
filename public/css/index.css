@@ -12,6 +12,10 @@ caption {
     font-size: 3vmin;
 }
 
+.nav-ul {
+    width: inherit;
+}
+
 .flexPanel {
     display: flex;
     flex-direction: row;
@@ -45,8 +49,6 @@ caption {
 .userCard.selected > ul > li#cardEmail {
     font-size: 1rem;
 }
-
-
 
 #cardName {
     font-style: oblique;
@@ -322,7 +324,7 @@ td.is-empty {
 }
 
 #tourListMain {
-    width: fit-content;
+    width: 50vw;
     padding: 2rem;
 }
 
@@ -374,6 +376,40 @@ a#isUser {
     color: rgb(134, 24, 24);
 }
 
+@media only screen and (max-width: 2100px) {
+    #dashboard-navitem, #managetours-navitem, #profile-navitem, #logout-navitem {
+        display: flex;
+    }
+    #menubutton-navitem {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1380px) {
+    #dashboard-navitem, #managetours-navitem, #profile-navitem, #logout-navitem {
+        display: none;
+    }
+    #menubutton-navitem {
+        display: flex;
+        float: right;
+        height: -webkit-fill-available;
+    }
+    #logo-navitem {
+        display: flex;
+        float: left;
+    }
+
+    .userCard {
+        margin: 1rem auto;
+    }
+
+    nav .brand-logo {
+        left: unset;
+        -webkit-transform: unset;
+        transform: unset;
+    }
+}
+
 /* Phone Styles (Small Devices) */
 @media only screen and (max-width: 600px) {
     .form {
@@ -385,9 +421,32 @@ a#isUser {
         height: 90vh !important;
     }
 
+    .flexPanel {
+        flex-direction: column;
+        flex-wrap: unset;
+    }
+
+    .userNav {
+        margin-top: 15%;
+    }
+
+    .userCard {
+        margin: 1rem;
+    }
+
+    .dashboardTitle {
+        font-size: 6vmin;
+        position: absolute;
+    }
+
     .containerTitle {
         font-size: 12vmin;
         margin: 2rem 0 0rem 0;
+    }
+
+    .nav-logo {
+        width: 5rem;
+        margin: 0 auto;
     }
 
     .navBtn {
@@ -410,6 +469,18 @@ a#isUser {
 
     .select-wrapper {
         margin-top: 1rem;
+    }
+    
+    #cardName {
+        font-size: 2rem;
+    }
+
+    #cardRole {
+        font-size: 1.25rem;
+    }
+
+    #cardEmail {
+        font-size: 1rem;
     }
 
     a#notUser,
@@ -447,6 +518,11 @@ a#isUser {
         font-size: 8vmin;
         height: max-content;
         white-space: nowrap;
+    }
+    
+    button#promoteBtn, button#removeBtn {
+        height: auto;
+        font-size: 1rem;
     }
 
     input#email,

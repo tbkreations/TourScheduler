@@ -3,24 +3,27 @@
         <% if (roles.includes('Admin')) { %>
         (Admin)
         <% } else { %>
-        <%= roles %>)
+        (<%= roles %>)
         <% } %>
     </h1>
 
     <nav class="userNav">
-        <a href="/dashboard" class="brand-logo"><img class="nav-logo" src="/images/tu_tiger.svg"></a>
-        <ul>
-            <li class="active"><a href="/dashboard" class="nav-item">Dashboard Home</a></li>
-            <li><a href="/tourList" class="nav-item">Manage Tours</a></li>
-            <li><a href="/profile" class="nav-item">User Profile</a></li>
-            <li><a href="/users/logout" class="nav-item">Logout</a></li>
+        <!-- <a href="/dashboard" class="brand-logo"><img class="nav-logo" src="/images/tu_tiger.svg"></a> -->
+        <ul class="nav-ul">
+            <li id="logo-navitem"><a href="/dashboard" class="brand-logo"><img class="nav-logo" src="/images/tu_tiger.svg"></a></li>
+            <li id="dashboard-navitem" class="active"><a href="/dashboard" class="nav-item">Dashboard Home</a></li>
+            <li id="managetours-navitem"><a href="/tourList" class="nav-item">Manage Tours</a></li>
+            <li id="profile-navitem"><a href="/profile" class="nav-item">User Profile</a></li>
+            <li id="logout-navitem"><a href="/users/logout" class="nav-item">Logout</a></li>
+            <!-- <li id="menu-navitem"><a href="/dashboard#" class="nav-item"><i class="fas fa-bars"></i></a></li> -->
+            <li id="menubutton-navitem"><a href="/dashboard#" class="nav-item"><i class="fas fa-bars"></i></a></li>
         </ul>
     </nav>
 
     <!-- Admin Panel Table -->
     <p class="dashboardHeading">Manage Users</p>
     <div class="flexPanel" id="userPanel">
-        <% if (roles.includes('Admin')) { %>
+        <% if (roles.includes('Admin') && (name == 'Trae Brown')) { %>
         <% users.forEach((user) => { %>
         <% if (user.firstname != 'Trae') { %>
         <div class="userCard userCardHover" data-id="<%= user._id %>">
@@ -34,16 +37,26 @@
             </p>
             <ul>
                 <li id="cardEmail"><%= user.email %></li>
-                <li id="cardPromote">
-                    <form action="/dashboard/promote/<%= user._id %>" method="POST">
-                        <button type="submit" class="navBtn actionButton" id="promoteBtn">Promote User</button>
-                    </form>
-                </li>
-                <li id="cardRemove">
-                    <form action="/dashboard/<%= user._id %>?_method=DELETE" method="POST">
-                        <button type="submit" class="navBtn actionButton" id="removeBtn">Remove User</button>
-                    </form>
-                </li>
+                <div class="cardButtonContainer">
+                    <% if (user.roles.includes('Admin')) { %>
+                    <li id="cardDemote">
+                        <form action="/dashboard/demote/<%= user._id %>" method="POST">
+                            <button type="submit" class="navBtn actionButton" id="demoteBtn">Demote User</button>
+                        </form>
+                    </li>
+                    <% } else { %>
+                    <li id="cardPromote">
+                        <form action="/dashboard/promote/<%= user._id %>" method="POST">
+                            <button type="submit" class="navBtn actionButton" id="promoteBtn">Promote User</button>
+                        </form>
+                    </li>
+                    <% } %>
+                    <li id="cardRemove">
+                        <form action="/dashboard/<%= user._id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="navBtn actionButton" id="removeBtn">Remove User</button>
+                        </form>
+                    </li>
+                </div>
             </ul>
         </div>
         <% } %>

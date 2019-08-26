@@ -96,4 +96,16 @@ router.post('/dashboard/promote/:id', ensureAuthenticated, (req, res) => {
     });
 })
 
+router.post('/dashboard/demote/:id', ensureAuthenticated, (req, res) => {
+    User.findOneAndUpdate({_id: req.params.id}, {$pull: {roles: 'Admin'}}, (err, success) => {
+        if (err) {
+            res.redirect('/dashboard');
+            console.log(err);
+        } else {
+            res.redirect('/dashboard');
+            console.log('User Demoted: ' + req.params.id);
+        }
+    });
+})
+
 module.exports = router;
